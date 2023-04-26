@@ -1,4 +1,4 @@
-const { Stack } = require("./stack");
+// const { Stack } = require("./stack");
 /** BinaryTreeNode: node for a general tree. */
 
 class BinaryTreeNode {
@@ -17,8 +17,12 @@ class BinaryTree {
   /** minDepth(): return the minimum depth of the tree -- that is,
    * the length of the shortest path from the root to a leaf. */
 
-  minDepth() {
+  minDepth(root = this.root, lDepth = 0, rDepth = 0) {
 
+    if(root.left === null && root.right === null) return 1;
+    if(root.left) lDepth = this.minDepth(root.left, lDepth, rDepth);
+    if(root.right) rDepth = this.minDepth(root.right, lDepth, rDepth);
+    return Math.min(lDepth + 1, rDepth + 1);
   }
 
   /** maxDepth(): return the maximum depth of the tree -- that is,
@@ -72,5 +76,24 @@ class BinaryTree {
     
   }
 }
+let smallTree;
+let largeTree;
+let emptyTree;
+emptyTree = new BinaryTree();
 
-module.exports = { BinaryTree, BinaryTreeNode };
+// build small tree;
+let smallLeft = new BinaryTreeNode(5);
+let smallRight = new BinaryTreeNode(5);
+let smallRoot = new BinaryTreeNode(6, smallLeft, smallRight);
+smallTree = new BinaryTree(smallRoot);
+
+// build large tree
+let node6 = new BinaryTreeNode(1);
+let node5 = new BinaryTreeNode(1);
+let node4 = new BinaryTreeNode(2);
+let node3 = new BinaryTreeNode(3, node4, node6);
+let node2 = new BinaryTreeNode(5, node3, node5);
+let node1 = new BinaryTreeNode(5);
+let root = new BinaryTreeNode(6, node1, node2);
+largeTree = new BinaryTree(root);
+// module.exports = { BinaryTree, BinaryTreeNode };
