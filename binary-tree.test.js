@@ -1,5 +1,5 @@
 const { BinaryTree, BinaryTreeNode } = require("./binary-tree");
-const { Node, Stack } = require("./stack");
+const { Stack } = require("./stack");
 let smallTree;
 let largeTree;
 let emptyTree;

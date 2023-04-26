@@ -1,5 +1,5 @@
 const { Tree, TreeNode } = require("./tree");
-const { Node, Stack } = require("./stack");
+const { Stack } = require("./stack");
 
 let smallTree;
 let largeTree;

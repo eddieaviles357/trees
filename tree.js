@@ -1,4 +1,4 @@
-const { Node, Stack } = require('./stack');
+const { Stack } = require('./stack');
 /** TreeNode: node for a general tree. */
 
 class TreeNode {
