@@ -67,7 +67,26 @@ class Tree {
    * whose value is greater than lowerBound. */
 
   numGreater(lowerBound) {
+    let curr = null;
+    let count = 0;
+    // well use our own stack class here
+    let nodeStack = new Stack();
+    if(!this.root) return count;
+    nodeStack.push(this.root);
+    if(this.root.val > lowerBound) count++;
 
+    while(!nodeStack.isEmpty()) {
+      curr = nodeStack.pop(); // remove node from stack
+
+      if(curr.children.length) { // does node have children?
+        for(let treeNode of curr.children) {
+          nodeStack.push(treeNode); // add children to stack
+          if(treeNode.val > lowerBound) count++;
+        };
+      };
+    };
+
+    return count;
   }
 }
 let n = new TreeNode(1);
