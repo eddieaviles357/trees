@@ -16,11 +16,12 @@ class Tree {
 
   sumValues() {
     let curr = null;
-    // well use our own stack class here
+    let sum = 0;
     let nodeStack = new Stack();
-    nodeStack.push(this.root);
-    
-    let sum = nodeStack.first.val.val;
+    // well use our own stack class here
+    if(!this.root) return sum; // is there a root?
+    nodeStack.push(this.root); // push to the stack
+    sum = nodeStack.first.val.val; // extract the value of the root node
 
     while(!nodeStack.isEmpty()) {
       curr = nodeStack.pop(); // remove node from stack
@@ -28,7 +29,7 @@ class Tree {
       if(curr.children.length) { // does node have children?
         for(let treeNode of curr.children) {
           nodeStack.push(treeNode); // add children to stack
-          sum+=treeNode.val
+          sum += treeNode.val
         };
       };
     };
@@ -39,7 +40,27 @@ class Tree {
   /** countEvens(): count all of the nodes in the tree with even values. */
 
   countEvens() {
+    let curr = null;
+    let evens = 0;
+    // well use our own stack class here
+    let nodeStack = new Stack();
+    if(!this.root) return evens;
+    nodeStack.push(this.root);
+    // is the root value even?
+    evens = (nodeStack.first.val.val % 2 === 0) ? 1 : 0;
 
+    while(!nodeStack.isEmpty()) {
+      curr = nodeStack.pop(); // remove node from stack
+
+      if(curr.children.length) { // does node have children?
+        for(let treeNode of curr.children) {
+          nodeStack.push(treeNode); // add children to stack
+          evens += (treeNode.val % 2 === 0) ? 1 : 0;
+        };
+      };
+    };
+
+    return evens;
   }
 
   /** numGreater(lowerBound): return a count of the number of nodes
@@ -135,4 +156,4 @@ class Stack {
   }
 };
 
-// module.exports = { Tree, TreeNode };
+module.exports = { Tree, TreeNode, Node, Stack };
