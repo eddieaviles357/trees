@@ -36,15 +36,15 @@ class BinaryTree {
     if(root.left === null && root.right === null) return 1;
     if(root.left) lDepth = this.maxDepth(root.left, lDepth, rDepth);
     if(root.right) rDepth = this.maxDepth(root.right, lDepth, rDepth);
-    
+
     return Math.max(lDepth + 1, rDepth + 1);
   }
 
   /** maxSum(): return the maximum sum you can obtain by traveling along a path in the tree.
    * The path doesn't need to start at the root, but you can't visit a node more than once. */
 
-  maxSum() {
-
+  maxSum(root = this.root) {
+    if(!this.root) return 0;
   }
 
   /** nextLarger(lowerBound): return the smallest value in the tree
