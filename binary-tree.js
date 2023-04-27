@@ -18,18 +18,26 @@ class BinaryTree {
    * the length of the shortest path from the root to a leaf. */
 
   minDepth(root = this.root, lDepth = 0, rDepth = 0) {
-    if(!this.root) return 0;
+    if(!this.root) return 0; // non existent root
+
     if(root.left === null && root.right === null) return 1;
     if(root.left) lDepth = this.minDepth(root.left, lDepth, rDepth);
     if(root.right) rDepth = this.minDepth(root.right, lDepth, rDepth);
+
     return Math.min(lDepth + 1, rDepth + 1);
   }
 
   /** maxDepth(): return the maximum depth of the tree -- that is,
    * the length of the longest path from the root to a leaf. */
 
-  maxDepth() {
+  maxDepth(root = this.root, lDepth = 0, rDepth = 0) {
+    if(!this.root) return 0; // non existent root
 
+    if(root.left === null && root.right === null) return 1;
+    if(root.left) lDepth = this.maxDepth(root.left, lDepth, rDepth);
+    if(root.right) rDepth = this.maxDepth(root.right, lDepth, rDepth);
+    
+    return Math.max(lDepth + 1, rDepth + 1);
   }
 
   /** maxSum(): return the maximum sum you can obtain by traveling along a path in the tree.
@@ -76,24 +84,24 @@ class BinaryTree {
     
   }
 }
-// let smallTree;
-// let largeTree;
-// let emptyTree;
-// emptyTree = new BinaryTree();
+let smallTree;
+let largeTree;
+let emptyTree;
+emptyTree = new BinaryTree();
 
-// // build small tree;
-// let smallLeft = new BinaryTreeNode(5);
-// let smallRight = new BinaryTreeNode(5);
-// let smallRoot = new BinaryTreeNode(6, smallLeft, smallRight);
-// smallTree = new BinaryTree(smallRoot);
+// build small tree;
+let smallLeft = new BinaryTreeNode(5);
+let smallRight = new BinaryTreeNode(5);
+let smallRoot = new BinaryTreeNode(6, smallLeft, smallRight);
+smallTree = new BinaryTree(smallRoot);
 
-// // build large tree
-// let node6 = new BinaryTreeNode(1);
-// let node5 = new BinaryTreeNode(1);
-// let node4 = new BinaryTreeNode(2);
-// let node3 = new BinaryTreeNode(3, node4, node6);
-// let node2 = new BinaryTreeNode(5, node3, node5);
-// let node1 = new BinaryTreeNode(5);
-// let root = new BinaryTreeNode(6, node1, node2);
-// largeTree = new BinaryTree(root);
+// build large tree
+let node6 = new BinaryTreeNode(1);
+let node5 = new BinaryTreeNode(1);
+let node4 = new BinaryTreeNode(2);
+let node3 = new BinaryTreeNode(3, node4, node6);
+let node2 = new BinaryTreeNode(5, node3, node5);
+let node1 = new BinaryTreeNode(5);
+let root = new BinaryTreeNode(6, node1, node2);
+largeTree = new BinaryTree(root);
 module.exports = { BinaryTree, BinaryTreeNode };
